@@ -1,0 +1,22 @@
+{
+    "usuarios": [
+        {
+            "id": 1,
+            "nome": "joao",
+            "idade": "18",
+            "CPF": "52742558845"
+        },
+        {
+            "id": 4,
+            "nome": "rafaela",
+            "idade": 17,
+            "CPF": "222222222"
+        },
+        {
+            "id": 4,
+            "nome": "Arthur",
+            "idade": 18,
+            "CPF": "223232323"
+        }
+    ]
+}
