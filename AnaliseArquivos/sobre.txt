@@ -1,0 +1,1 @@
+Organizador de Arquivos Inteligente: Um script que monitora uma pasta (Downloads, por exemplo) e move arquivos automaticamente para pastas específicas com base na extensão (.pdf, .jpg, .zip).
