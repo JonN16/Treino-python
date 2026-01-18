@@ -4,24 +4,35 @@ import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-
-
 class Monitor(FileSystemEventHandler):
     def on_created(self, event):
-        GuardarArquivo(event)
+        GuardarArquivo(event,"PDF")
 
-def GuardarArquivo(event):
-    if not os.path.exists("PDFs"):
-        os.makedirs("PDFs")
-    if event.src_path.endswith(".pdf"):
-        nome = os.path.basename(event.src_path)
-        for i in os.listdir("PDFs"):
-            if nome == i:
-                nome_base, extensao = os.path.splitext(nome)
-                novo_nome = nome_base + "_1" + extensao
-                os.rename(nome,novo_nome)
-                nome = novo_nome
-        shutil.move(nome, "PDFs/")
+def GuardarArquivo(event, tipo):
+
+    pasta = tipo
+    extensao = "." + tipo.lower()
+
+    if not os.path.exists(pasta):
+        os.makedirs(pasta)
+
+    nome = os.path.basename(event.src_path)
+
+    for i in os.listdir(pasta):
+        if nome == i:
+            n = 1
+            nome_base, ext = os.path.splitext(nome)
+
+            while True:
+                novo_nome = nome_base + str(n) + ext
+                if novo_nome not in os.listdir(pasta):
+                    break
+                n += 1
+
+            os.rename(nome, novo_nome)
+            nome = novo_nome 
+
+    shutil.move(nome, pasta)
 
 def monitorar(pasta):
     observer = Observer()
